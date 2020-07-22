@@ -18,21 +18,36 @@ daniel_questions = ['What school does Daniel teach at? ', 'In what city was Dani
 
 mike_info = ['university city', 'kansas city', '16']
 mike_questions = ['In what city does Mike teach? ', 'In what city was Mike born? ', 'How many years has Mike been a teacher? (Use number keys)']
-
+our_questions = [daniel_questions, mike_questions]
+our_info = [daniel_info, mike_info]
 
 def determine_avg(questions, info):
-  percent = 0
-  num_correct = call_questions(daniel_questions, daniel_info)
-  percent= (f'You got {(num_correct/len(questions))*100}% of the questions correct.')
-  return percent
-print(determine_avg(daniel_questions, daniel_info))
+  percent_list = []
+  for index in range(len(questions)):
+    num_correct = call_questions(questions[index], info[index])
+    percent_list.append((num_correct/len(questions[index]))*100)
+  return percent_list
 
-# print(call_questions(daniel_questions, daniel_info))
-# print(call_questions(mike_questions, mike_info))
+# def results(a_list):
+#   statement = 'You got {a_list[0]}% of the questions correct about Daniel and {a_list[1]}% of the questions correct about Michael.'
+#   return statement
 
+final = determine_avg(our_questions, our_info)
 
+def main(num1, num2):
+  if final[0] > final[1]:
+    statement = (f'You got {num1}% of the questions about Daniel correct and {num2}% of the questions about Michael correct. You know Daniel better than Michael.')
+    return statement
+  elif final[0] < final[1]:
+    statement = (f'You got {num1}% of the questions about Daniel correct and {num2}% of the questions about Michael correct. You know Michael better than Daniel.')
+    return statement
+  else:
+    statement = (f'You got {num1}% of the questions about Daniel correct and {num2}% of the questions about Michael correct. You know Daniel and Michael equally well.')
+    return statement
 
-#Loop through questions about Daniel. Create a list of student answers
+print(main(final[0], final[1]))
+print('hello')
+
 
 
 
